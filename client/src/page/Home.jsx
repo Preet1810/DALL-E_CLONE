@@ -26,7 +26,7 @@ const Home=() => {
         setLoading(true);
 
         try {
-            const response=await fetch('https://dalle-arbb.onrender.com/api/v1/post', {
+            const response=await fetch('https://bespoke-dolphin-f232d4.netlify.app/api/v1/post', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
