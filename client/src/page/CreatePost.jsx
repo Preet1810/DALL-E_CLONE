@@ -37,9 +37,10 @@ const CreatePost=() => {
                         prompt: form.prompt,
                     }),
                 });
-                console.log(response);
+                // console.log(response);
                 const data=await response.json();
-                console.log(data);
+                // console.log(data);
+
                 setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
             } catch (err) {
                 alert(err);
@@ -51,10 +52,32 @@ const CreatePost=() => {
         }
     };
 
+    const handleSubmit=async (e) => {
+        e.preventDefault();
 
-    const handleSubmit=() => {
+        if (form.prompt&&form.photo) {
+            setLoading(true);
+            try {
+                const response=await fetch('https://dalle-arbb.onrender.com/api/v1/post', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ ...form }),
+                });
 
-    }
+                await response.json();
+                alert('Success');
+                navigate('/');
+            } catch (err) {
+                alert(err);
+            } finally {
+                setLoading(false);
+            }
+        } else {
+            alert('Please generate an image with proper details');
+        }
+    };
 
 
 
