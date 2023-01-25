@@ -9,11 +9,13 @@ import postRoutes from './routes/postRoutes.js';
 dotenv.config()
 
 const app=express();
+
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "https://63cfecd3a8f6d103523c0f07--neon-quokka-5605b1.netlify.app/");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
